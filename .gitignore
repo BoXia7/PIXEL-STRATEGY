@@ -1,0 +1,23 @@
+node_modules/
+
+target/
+
+.env
+
+.DS_Store
+
+*.log
+
+# Frontend
+
+.next/
+
+# Contracts
+
+contracts/target/
+
+contracts/node_modules/
+
+# Tests
+
+test-ledger/

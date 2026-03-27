@@ -1,0 +1,87 @@
+name: CI
+
+on:
+
+  push:
+
+    branches: [ main ]
+
+  pull_request:
+
+    branches: [ main ]
+
+jobs:
+
+  test:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+    - uses: actions/checkout@v3
+
+    - name: Setup Node.js
+
+      uses: actions/setup-node@v3
+
+      with:
+
+        node-version: '18'
+
+    - name: Setup Rust
+
+      uses: actions/setup-rust@v1
+
+      with:
+
+        rust-version: stable
+
+    - name: Setup Solana CLI
+
+      run: |
+
+        sh -c "$(curl -sSfL https://release.solana.com/v1.18.4/install)"
+
+        echo "$HOME/.local/share/solana/install/active_release/bin" >> $GITHUB_PATH
+
+    - name: Setup Anchor
+
+      run: |
+
+        cargo install --git https://github.com/coral-xyz/anchor avm --locked --force
+
+        avm install latest
+
+        avm use latest
+
+    - name: Build contracts
+
+      run: |
+
+        cd contracts
+
+        anchor build
+
+    - name: Test contracts
+
+      run: |
+
+        cd contracts
+
+        anchor test
+
+    - name: Install frontend dependencies
+
+      run: |
+
+        cd frontend
+
+        npm install
+
+    - name: Lint frontend
+
+      run: |
+
+        cd frontend
+
+        npm run lint
