@@ -1,5 +1,8 @@
 # Pixel Strategy
 
+![image - 2026-03-27T042038 865](https://github.com/user-attachments/assets/236b078b-25f0-41a6-897f-49418a912a8c)
+
+
 *A strategic memecoin that reinvests 100% of creator fees into digital and pixelated assets, building sustainable value for the community.*
 
 ---
